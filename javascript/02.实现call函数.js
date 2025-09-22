@@ -1,4 +1,4 @@
-Function.prototype.call = function (context, ...args) {
+Function.prototype.myCall = function (context, ...args) {
   // 1.判断
   if (typeof this !== 'function') {
     throw new TypeError('Call must be called on a function');
@@ -25,4 +25,4 @@ function sum(a, b) {
   console.log('a + b:', a + b);
 }
 
-sum.call({ name: 'mose' }, 10, 20);
+sum.myCall({ name: 'mose' }, 10, 20);
