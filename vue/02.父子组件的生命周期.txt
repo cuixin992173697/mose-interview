@@ -1,0 +1,19 @@
+1.挂载阶段
+父 setup
+父 onBeforeMount
+  子 setup
+  子 onBeforeMount
+  子 onMounted
+父 onMounted
+
+2.更新阶段
+父 onBeforeUpdate
+  子 onBeforeUpdate
+  子 onUpdated
+父 onUpdated
+
+3.卸载阶段
+父 onBeforeUnmount
+  子 onBeforeUnmount
+  子 onUnmounted
+父 onUnmounted
