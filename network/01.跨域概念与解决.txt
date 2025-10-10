@@ -1,0 +1,46 @@
+1. 什么是跨域
+跨域指的是:浏览器阻止网页向不同源(origin)的服务器发送请求或读取响应数据的行为
+
+1.1 源的定义
+一个 URL 的 源由三个部分组成, 只有完全相同的源才是同源
+protocol:协议(http / https)
+domain: 域名或 IP
+port:端口号
+
+1.2 为什么出现跨域
+浏览器的 同源策略(Same-Origin Policy)用来保护用户信息安全。
+限制 JS 脚本只能访问同源的资源，防止恶意网站窃取敏感数据。
+
+
+2. 解决跨域的办法
+2.1 跨域资源共享(CORS)
+服务器在响应头中加上允许跨域的字段
+
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, PUT
+Access-Control-Allow-Headers: Content-Type
+
+2.2 JSONP(仅支持 GET)
+利用 <script> 标签不受跨域限制的特性。服务器返回一段 JS 代码调用回调函数。
+
+<script src="http://example.com/data?callback=handle"></script>
+<script>
+  function handle(data) {
+    console.log(data);
+  }
+</script>
+
+2.3 代理
+在本地或前端服务上设置代理，将跨域请求 代理成同源请求。
+// Vite 配置示例
+export default {
+  server: {
+    proxy: {
+      '/api': 'https://api.example.com'
+    }
+  }
+};
+
+2.4 WebSocket / iframe postMessage
+iframe 与父页面通信:window.postMessage
+WebSocket 通常不受同源策略限制
