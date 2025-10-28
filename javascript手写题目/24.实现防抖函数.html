@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input id="testInput" type="text" placeholder="Type something..." />
+    </div>
+    <script>
+      function debounce(fn, delay = 300) {
+        let timer = null 
+         return function(...args) {
+          clearTimeout(timer)
+          setTimeout(() => {
+            fn.apply(this, args)
+          }, delay)
+         }
+      }
+      function handleInput(event) {
+        console.log('Input value:', event.target.value);
+      }
+
+      const debouncedInput = debounce(handleInput, 800);
+
+      const input = document.getElementById('testInput');
+      input.addEventListener('input', debouncedInput);
+    </script>
+  </body>
+</html>
