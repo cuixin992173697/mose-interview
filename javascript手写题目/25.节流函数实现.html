@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input id="testInput" type="text" placeholder="Type something..." />
+    </div>
+    <script>
+      function throttle(fn, delay = 300) {
+        let lastTime = 0
+
+        return function (...args) {
+          const now = Date.now()
+          if (now - lastTime >= delay) {
+            fn.apply(this, args)
+            lastTime = now
+          }
+        }
+      }
+
+      function handleInput(event) {
+        console.log('Input value:', event.target.value);
+      }
+
+      const throttleInput = throttle(handleInput, 800);
+
+      const input = document.getElementById('testInput');
+      input.addEventListener('input', throttleInput );
+    </script>
+  </body>
+</html>
