@@ -55,3 +55,29 @@ c1.children.push(c3);
 
 console.log(getTreeDepth(root)); 
 console.log(getTreeDepthIterative(root)); 
+
+
+function maxDepth(root) {
+  if (!root) return 0; // 空节点深度为0
+  const left = maxDepth(root.left);
+  const right = maxDepth(root.right);
+  return Math.max(left, right) + 1;
+}
+
+function maxDepth(root) {
+  if (!root) return 0;
+  const queue = [root];
+  let depth = 0;
+
+  while (queue.length > 0) {
+    let size = queue.length; // 当前层节点数量
+    for (let i = 0; i < size; i++) {
+      const node = queue.shift();
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    depth++;
+  }
+
+  return depth;
+}
