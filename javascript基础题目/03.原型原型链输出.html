@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Foo() {
+        console.log('1');
+        return this;
+      }
+
+      // 静态方法
+      Foo.getName = function () {
+        console.log('2');
+      };
+
+      // 原型方法
+      Foo.prototype.getName = function () {
+        console.log('3');
+      };
+
+      // 变量函数表达式
+      var getName = function () {
+        console.log('4');
+      };
+
+      // 函数声明（会被变量函数覆盖）
+      function getName() {
+        console.log('5');
+      }
+
+      Foo();
+
+      Foo.getName(); // 调用静态方法
+      new Foo().getName(); // 调用原型方法
+      getName(); // 调用变量函数表达式，覆盖函数声明
+
+      Foo().getName(); // 调用原型方法
+
+      getName(); // 变量函数表达式
+    </script>
+  </body>
+</html>
