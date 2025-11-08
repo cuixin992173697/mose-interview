@@ -33,3 +33,38 @@
     </script>
   </body>
 </html>
+
+
+<script>
+  /**
+ * 节流函数 throttle
+ * @param {Function} fn - 要执行的函数
+ * @param {number} delay - 节流间隔（毫秒）
+ * @param {boolean} immediate - 是否立即执行（默认 true）
+ */
+function throttle(fn, delay = 300, immediate = true) {
+  let lastTime = 0;   // 上一次执行时间
+  let timer = null;
+
+  return function (...args) {
+    const context = this;
+    const now = Date.now();
+
+    if (immediate) {
+      // 立即执行版
+      if (now - lastTime > delay) {
+        fn.apply(context, args);
+        lastTime = now;
+      }
+    } else {
+      // 非立即执行版
+      if (!timer) {
+        timer = setTimeout(() => {
+          fn.apply(context, args);
+          timer = null;
+        }, delay);
+      }
+    }
+  };
+}
+</script>

@@ -30,3 +30,36 @@
     </script>
   </body>
 </html>
+
+
+<script>
+  /**
+ * 防抖函数 debounce
+ * @param {Function} fn - 要执行的函数
+ * @param {number} delay - 延迟时间（毫秒）
+ * @param {boolean} immediate - 是否立即执行（true: 先执行一次，停止后不执行）
+ */
+function debounce(fn, delay = 300, immediate = false) {
+  let timer = null;
+
+  return function (...args) {
+    const context = this;
+
+    // 如果设置了立即执行，并且没有定时器 -> 立即执行一次
+    if (immediate && !timer) {
+      fn.apply(context, args);
+    }
+
+    // 清除上一次的定时器
+    clearTimeout(timer);
+
+    // 设置新的定时器
+    timer = setTimeout(() => {
+      timer = null; // 重置timer
+      if (!immediate) {
+        fn.apply(context, args); // 延迟执行
+      }
+    }, delay);
+  };
+}
+</script>
