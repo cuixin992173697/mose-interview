@@ -22,3 +22,6 @@ function myInstanceof(left, right) {
 function Person() {}
 let p = new Person();
 console.log(myInstanceof(p, Object));
+
+
+
