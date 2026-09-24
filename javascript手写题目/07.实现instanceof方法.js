@@ -4,6 +4,8 @@ function myInstanceof(left, right) {
     // null 单独处理（typeof null === 'object' 会骗过下面的判断）
     // 基本类型字面量(string/number/boolean/symbol/bigint)和 undefined 返回 false
     // 函数要放行（typeof === 'function'）
+
+    
     if (left === null || (typeof left !== 'object' && typeof left !== 'function')) {
       return false;
     }
