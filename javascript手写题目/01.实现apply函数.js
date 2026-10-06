@@ -26,9 +26,9 @@ Function.prototype.myApply = function (context, args) {
   return result;
 };
 
-function sum(a, b) {
-  console.log(this.name, a, b);
-  console.log('Sum:', a + b);
-}
+// function sum(a, b) {
+//   console.log(this.name, a, b);
+//   console.log('Sum:', a + b);
+// }
 
-sum.myApply({ name: 'Alice' }, [1, 2]);
+// sum.myApply({ name: 'Alice' }, [1, 2]);
