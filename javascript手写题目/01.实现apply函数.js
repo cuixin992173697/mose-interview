@@ -9,7 +9,6 @@ Function.prototype.myApply = function (context, args) {
 
   // 3.给context添加一个唯一的属性，保存当前函数
   const fnSymbol = Symbol('fn');
-  context[fnSymbol] = this;
 
   // 4.执行函数
   let result;
@@ -26,9 +25,9 @@ Function.prototype.myApply = function (context, args) {
   return result;
 };
 
-// function sum(a, b) {
-//   console.log(this.name, a, b);
-//   console.log('Sum:', a + b);
-// }
+function sum(a, b) {
+  console.log(this.name, a, b);
+  console.log('Sum:', a + b);
+}
 
-// sum.myApply({ name: 'Alice' }, [1, 2]);
+sum.myApply({ name: 'Alice' }, [1, 2]);
