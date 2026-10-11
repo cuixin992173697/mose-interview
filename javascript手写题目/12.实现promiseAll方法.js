@@ -30,13 +30,13 @@ const p1 = Promise.resolve(1);
 const p2 = Promise.resolve(2);
 const p3 = new Promise(resolve => setTimeout(() => resolve(3), 100));
 
-promiseAll([p1, p2, p3])
-  .then(res => {
-    console.log('测试结果:', res); // 应输出: 测试结果: [1, 2, 3]
-  })
-  .catch(err => {
-    console.error('测试失败:', err);
-  });
+// promiseAll([p1, p2, p3])
+//   .then(res => {
+//     console.log('测试结果:', res); // 应输出: 测试结果: [1, 2, 3]
+//   })
+//   .catch(err => {
+//     console.error('测试失败:', err);
+//   });
 
 const p4 = Promise.reject('error');
 promiseAll([p1, p4, p2])
@@ -47,6 +47,6 @@ promiseAll([p1, p4, p2])
     console.error('测试 reject:', err); // 应输出: 测试 reject: error
   });
 
-promiseAll([]).then(res => {
-  console.log('空数组结果:', res); // 应输出: 空数组结果: []
-});
+// promiseAll([]).then(res => {
+//   console.log('空数组结果:', res); // 应输出: 空数组结果: []
+// });

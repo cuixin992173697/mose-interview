@@ -10,6 +10,12 @@ function inherit(SubType, SuperType) {
   Object.setPrototypeOf(SubType, SuperType);
 }
 
+function inheritPrototype(subType, superType) {
+  var prototype = Object.create(superType.prototype); // 以父类原型为蓝本创建新对象
+  prototype.constructor = subType;                     // 修正 constructor 指向（被 Object.create 重写后丢失）
+  subType.prototype = prototype;                       // 挂到子类原型上
+}
+
 // ================================
 // 测试代码
 // ================================
@@ -43,16 +49,16 @@ SubType.prototype.sayAge = function () {
 const instance1 = new SubType('崔鑫', 26);
 const instance2 = new SubType('小李', 22);
 
-console.log('instance1.name:', instance1.name); // 崔鑫
-console.log('instance1.colors:', instance1.colors); // ["red", "blue", "green"]
-instance1.colors.push('black');
-console.log('instance2.colors:', instance2.colors); // ["red", "blue", "green"] ✅ 互不影响
+// console.log('instance1.name:', instance1.name); // 崔鑫
+// console.log('instance1.colors:', instance1.colors); // ["red", "blue", "green"]
+// instance1.colors.push('black');
+// console.log('instance2.colors:', instance2.colors); // ["red", "blue", "green"] ✅ 互不影响
 
 instance1.sayName(); // 父类方法 sayName: 崔鑫 ✅
-instance1.sayAge(); // 子类方法 sayAge: 26 ✅
+// instance1.sayAge(); // 子类方法 sayAge: 26 ✅
 
-SubType.staticMethod(); // 父类静态方法被调用 ✅
+// SubType.staticMethod(); // 父类静态方法被调用 ✅
 
-console.log(instance1 instanceof SubType); // true ✅
-console.log(instance1 instanceof SuperType); // true ✅
-console.log(SubType.__proto__ === SuperType); // true ✅
+// console.log(instance1 instanceof SubType); // true ✅
+// console.log(instance1 instanceof SuperType); // true ✅
+// console.log(SubType.__proto__ === SuperType); // true ✅

@@ -24,5 +24,6 @@ function Person(name) {
   this.name = name;
 }
 const p = myNew(Person, 'mose');
-console.log(p.name); 
+console.log(p.name); 																									
+console.log( {} instanceof Object); // true
 

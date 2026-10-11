@@ -43,9 +43,9 @@ function handler(data) {
 bus.on('message', handler); // 发出事件
 bus.emit('message', '你好，世界！'); // 输出: 收到消息: 你好，世界！
 
-bus.off('message', handler); // 取消订阅
-bus.emit('message', '这条不会被处理'); // 无输出
+// bus.off('message', handler); // 取消订阅
+// bus.emit('message', '这条不会被处理'); // 无输出
 
-bus.once('onceEvent', msg => console.log('只触发一次:', msg));
-bus.emit('onceEvent', '第一次'); // 输出: 只触发一次: 第一次
-bus.emit('onceEvent', '第二次'); // 无输出
+// bus.once('onceEvent', msg => console.log('只触发一次:', msg));
+// bus.emit('onceEvent', '第一次'); // 输出: 只触发一次: 第一次
+// bus.emit('onceEvent', '第二次'); // 无输出
